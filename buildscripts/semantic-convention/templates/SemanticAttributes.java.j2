@@ -75,7 +75,12 @@ public final class {{class}} {
   {%- for attribute in attributes | unique(attribute="fqn") %}
   {%- if attribute.is_enum %}
   {%- set class_name = attribute.fqn | to_camelcase(True) ~ "Values" %}
+<<<<<<< HEAD
   {%- set type = to_java_return_type(attribute.attr_type.enum_type) %}
+=======
+  {%- set type = to_java_return_type(attribute.attr_type.string_type) %}
+  {%- if attribute.attr_type.custom_values %}
+>>>>>>> 399c1056... removed class generating enums and modified return type
   public static final class {{class_name}} {
     {%- for member in attribute.attr_type.members %}
       /** {% filter escape %}{{member.brief | to_doc_brief}}.{% endfilter %} */
@@ -83,7 +88,12 @@ public final class {{class}} {
     {%- endfor %}
       private {{ class_name }}() {}
   }
+<<<<<<< HEAD
 
+=======
+  {%- else -%}
+  {% endif %}
+>>>>>>> 399c1056... removed class generating enums and modified return type
   {% endif %}
   {%- endfor %}
 
