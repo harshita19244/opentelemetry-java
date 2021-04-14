@@ -76,11 +76,15 @@ public final class {{class}} {
   {%- if attribute.is_enum %}
   {%- set class_name = attribute.fqn | to_camelcase(True) ~ "Values" %}
 <<<<<<< HEAD
+<<<<<<< HEAD
   {%- set type = to_java_return_type(attribute.attr_type.enum_type) %}
 =======
   {%- set type = to_java_return_type(attribute.attr_type.string_type) %}
   {%- if attribute.attr_type.custom_values %}
 >>>>>>> 399c1056... removed class generating enums and modified return type
+=======
+  {%- set type = to_java_return_type(attribute.attr_type.enum_type) %}
+>>>>>>> 5f49a16f... reverted return type and removed the if check
   public static final class {{class_name}} {
     {%- for member in attribute.attr_type.members %}
       /** {% filter escape %}{{member.brief | to_doc_brief}}.{% endfilter %} */
@@ -89,9 +93,13 @@ public final class {{class}} {
       private {{ class_name }}() {}
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
   {%- else -%}
+=======
+
+>>>>>>> 5f49a16f... reverted return type and removed the if check
   {% endif %}
 >>>>>>> 399c1056... removed class generating enums and modified return type
   {% endif %}
